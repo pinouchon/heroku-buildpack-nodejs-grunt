@@ -14,6 +14,12 @@ bp_dir=$(cd $(dirname $0); cd ..; pwd)
 # Load some convenience functions like status(), echo(), and indent()
 source $bp_dir/bin/common.sh
 
+# install compass
+echo "-----> Installing Compass"
+export GEM_HOME=$build_dir/.gem/ruby/1.9.1
+PATH="$GEM_HOME/bin:$PATH"
+HOME=$BUILD_DIR gem install compass --user-install --no-rdoc --no-ri
+
 # Output npm debug info on error
 trap cat_npm_debug_log ERR
 
@@ -141,3 +147,4 @@ echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/node_modules/.bin:\
     https://nomnom.heroku.com/?request_id=$REQUEST_ID \
     > /dev/null
 ) &
+
